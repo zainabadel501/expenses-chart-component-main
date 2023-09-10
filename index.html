@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+  
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Expenses chart component</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+    
+  </style>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+
+  <div class="main-container">
+    <div class="top-container">
+      <div class="top-container-balance">
+      <h6 class="top-container-txt">My balance</h6>
+      <h3>$921.48</h3>
+    </div>
+    <div>
+      <img class="img_top" src="images\logo.svg" alt="">
+    </div>
+      
+
+    </div >
+    <div class="down-container">
+      <h3>Spending - Last 7 days</h3>
+      
+      <div class="chart">
+        <!-- possible solution: change the 
+          hight of the element 
+          depend on json data  
+          -js.css
+          foreach or map 
+
+        -->
+        <div class="shape_container">
+          <div class="shape"></div>
+          <h6 class="shape_txt"></h6>
+        </div>
+        <div class="shape_container">
+          <div class="shape"></div>
+          <h6 class="shape_txt"></h6>
+        </div>
+        <div class="shape_container">
+          <div class="shape"></div>
+          <h6 class="shape_txt"></h6>
+        </div>
+        <div class="shape_container">
+          <div class="shape"></div>
+          <h6 class="shape_txt"></h6>
+        </div>
+        <div class="shape_container">
+          <div class="shape"></div>
+          <h6 class="shape_txt"></h6>
+        </div>
+        <div class="shape_container">
+          <div class="shape"></div>
+          <h6 class="shape_txt"></h6>
+        </div>
+        <div class="shape_container">
+          <div class="shape"></div>
+          <h6 class="shape_txt"></h6>
+        </div> 
+      </div>
+   
+      
+      <hr>
+   <div class="footer">
+     <div>
+    <p>Total this month</p>
+     <h1>$478.33</h1>
+     
+    </div>
+    <div>
+     
+     <h2 class="pre">+2.4%</h2>
+     <p>from last month</p>
+     
+    </div>
+    </div>
+    </div>
+  </div>
+
+  
+  
+  <script>
+
+
+    const arr=[];
+    var r=document.querySelectorAll(".shape_txt");
+    var s=document.querySelectorAll(".shape");
+    
+    $.getJSON("data.json", function(data){
+
+      for ( var i=0 ; i<7 ;i++){
+        r[i].innerHTML=data[i].day;
+        s[i].style.height=data[i].amount*2+"px";
+        s[i].setAttribute('data-before', '$'+data[i].amount);
+        arr.push(Number(data[i].amount));
+        }
+
+
+        s[arr.indexOf(Math.max.apply(null, arr))].style.backgroundColor = "var(--primary-cyan)";
+
+
+         
+
+      }
+
+ 
+
+
+    );
+
+
+    
+    
+
+    
+
+    
+
+  </script>
+ 
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">zainabadel</a>.
+  </div>
+</body>
+
+</html>
